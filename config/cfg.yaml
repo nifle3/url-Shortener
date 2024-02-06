@@ -1,0 +1,5 @@
+build: "dev"
+storage:
+  connection_string: "12"
+server:
+  port: "8080"
