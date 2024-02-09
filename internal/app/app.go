@@ -23,6 +23,6 @@ func Run() {
 	log.Info(fmt.Sprintf("app is starting with cfg: %#v", cfg))
 
 	// storage = storage.New()
-	// service = service.New()
+	// service := service.New(nil)
 	// transport = transport.New()
 }
