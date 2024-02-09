@@ -22,7 +22,8 @@ func Run() {
 	log := logger.MustCreate(cfg.Build)
 	log.Info(fmt.Sprintf("app is starting with cfg: %#v", cfg))
 
-	// storage = storage.New()
-	// service := service.New(nil)
+	//storage := inmemory.New()
+	//urlShortener := service.New(storage)
+
 	// transport = transport.New()
 }
