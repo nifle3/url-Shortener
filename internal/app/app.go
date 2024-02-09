@@ -5,6 +5,9 @@ import (
 	"log"
 	"os"
 	"urlShortener/internal/cfg"
+	"urlShortener/internal/service"
+	inmemory "urlShortener/internal/storage/inMemory"
+	"urlShortener/internal/transport/http"
 	"urlShortener/pkg/logger"
 )
 
@@ -22,8 +25,9 @@ func Run() {
 	log := logger.MustCreate(cfg.Build)
 	log.Info(fmt.Sprintf("app is starting with cfg: %#v", cfg))
 
-	//storage := inmemory.New()
-	//urlShortener := service.New(storage)
+	storage := inmemory.New()
+	urlShortener := service.New(storage)
 
-	// transport = transport.New()
+	transport := http.New(&urlShortener)
+	transport.Listen(cfg.Port)
 }
