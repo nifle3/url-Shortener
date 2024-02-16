@@ -15,7 +15,7 @@ jobs:
         run: go mod download
 
       - name: Test
-        run: go test./...
+        run: go test ./...
 
       - name: Linter
         uses: golangci/golangci-lint-action@v3
