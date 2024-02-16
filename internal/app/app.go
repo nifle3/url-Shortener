@@ -19,6 +19,17 @@ func Run() {
 	storageBuilder := storage.NewRedisBuilder()
 
 	storageBuilder.SetPassword(config.Cache.Password)
+
+	if err := storageBuilder.SetAddr(config.Cache.Addr); err != nil {
+		log.Error(err.Error())
+		os.Exit(1)
+	}
+
+	if err := storageBuilder.SetDB(config.Cache.DB); err != nil {
+		log.Error(err.Error())
+		os.Exit(1)
+	}
+
 	redis := storageBuilder.Build()
 
 	urlShortener := service.New(redis)

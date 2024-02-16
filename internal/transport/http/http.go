@@ -25,7 +25,7 @@ func (s *Server) Listen(adr string) error {
 	r := gin.Default()
 
 	r.GET("/v1/get/:url", s.Get)
-	r.GET("/v1/add", s.Add)
+	r.GET("/v1/add/:url", s.Add)
 
 	return r.Run(adr)
 }
