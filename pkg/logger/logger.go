@@ -8,7 +8,6 @@ import (
 
 func MustCreate(build string) *slog.Logger {
 	var logger *slog.Logger
-
 	switch build {
 	case "dev":
 		logger = slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{

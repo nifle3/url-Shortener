@@ -21,6 +21,12 @@ type Server struct {
 	Port string `yaml:"port"`
 }
 
+type Cache struct {
+	Addr     string `yaml:"addr"`
+	Password string `yaml:"password"`
+	DB       int    `yaml:"db"`
+}
+
 func loadConfig() {
 	var result Config
 
