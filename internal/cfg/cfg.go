@@ -38,6 +38,9 @@ func loadConfig() {
 	}
 
 	err = yaml.Unmarshal(file, &result)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
 	instance = &result
 }
