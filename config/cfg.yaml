@@ -3,3 +3,7 @@ storage:
   connection_string: "12"
 server:
   port: "8080"
+cache:
+  addr: 'localhost:6379'
+  password: '<PASSWORD>'
+  db: 0
