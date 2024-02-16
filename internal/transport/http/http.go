@@ -24,7 +24,7 @@ func New(service service) Server {
 func (s *Server) Listen(adr string) error {
 	r := gin.Default()
 
-	r.GET("/v1/get", s.Get)
+	r.GET("/v1/get/:url", s.Get)
 	r.GET("/v1/add", s.Add)
 
 	return r.Run(adr)
