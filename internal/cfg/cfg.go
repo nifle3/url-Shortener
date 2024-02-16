@@ -21,7 +21,7 @@ type Server struct {
 	Port string `yaml:"port"`
 }
 
-func MustLoad(cfgPath string) Config {
+func loadConfig(cfgPath string) Config {
 	var result Config
 
 	file, err := os.ReadFile(cfgPath)
