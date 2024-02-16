@@ -1,27 +1,46 @@
 package logger
 
 import (
-	"log"
 	"log/slog"
 	"os"
+	"sync"
 )
 
-func MustCreate(build string) *slog.Logger {
-	var logger *slog.Logger
+var onceSetBuild sync.Once
+var build string
+
+var instance *slog.Logger
+var once sync.Once
+
+func SetBuild(buildType string) {
+	onceSetBuild.Do(func() {
+		build = buildType
+	})
+}
+
+func GetInstance() *slog.Logger {
+	if build == "" {
+		onceSetBuild.Do(func() {
+			build = "dev"
+		})
+	}
+
+	once.Do(create)
+
+	return instance
+}
+
+func create() {
 	switch build {
 	case "dev":
-		logger = slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+		instance = slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
 			Level:     slog.LevelDebug,
 			AddSource: true,
 		}))
 	case "prod":
-		logger = slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
+		instance = slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 			Level:     slog.LevelInfo,
 			AddSource: false,
 		}))
-	default:
-		log.Fatal("build type is not define")
 	}
-
-	return logger
 }

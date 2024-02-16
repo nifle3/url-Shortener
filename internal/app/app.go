@@ -13,7 +13,9 @@ import (
 func Run() {
 	config := cfg.GetInstance()
 
-	log := logger.MustCreate(config.Build)
+	logger.SetBuild(config.Build)
+
+	log := logger.GetInstance()
 	log.Info(fmt.Sprintf("app is starting with cfg: %#v", config))
 
 	storageBuilder := storage.NewRedisBuilder()
@@ -36,6 +38,7 @@ func Run() {
 
 	transport := http.New(&urlShortener)
 	if err := transport.Listen(config.Port); err != nil {
+		log.Error(err.Error())
 		os.Exit(1)
 	}
 }

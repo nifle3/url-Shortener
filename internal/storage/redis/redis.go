@@ -7,13 +7,11 @@ type Storage struct {
 }
 
 func New(addr, password string, db int) *Storage {
-	client := redis.NewClient(&redis.Options{
-		Addr:     addr,
-		Password: password,
-		DB:       db,
-	})
-
 	return &Storage{
-		client: client,
+		client: redis.NewClient(&redis.Options{
+			Addr:     addr,
+			Password: password,
+			DB:       db,
+		}),
 	}
 }
