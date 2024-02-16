@@ -12,11 +12,12 @@ func (s *Server) Add(c *gin.Context) {
 		c.String(http.StatusBadRequest, "Parametr url is not exist")
 		return
 	}
+	result, err := s.service.Add(val, c.Request.Context())
 
-	if err := s.service.Add(val, c.Request.Context()); err != nil {
+	if err != nil {
 		c.String(http.StatusInternalServerError, "service error %s", err.Error())
 		return
 	}
 
-	c.String(http.StatusCreated, "url shortener created")
+	c.JSON(http.StatusCreated, map[string]string{"url": result})
 }

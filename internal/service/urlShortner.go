@@ -4,7 +4,7 @@ import "context"
 
 type storage interface {
 	Get(string, context.Context) (string, error)
-	Add(string, string, context.Context) error
+	Add(string, string, context.Context) (string, error)
 }
 
 type UrlShortener struct {

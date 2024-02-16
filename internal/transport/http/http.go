@@ -8,7 +8,7 @@ import (
 
 type service interface {
 	Get(url string, ctx context.Context) (string, error)
-	Add(url string, ctx context.Context) error
+	Add(url string, ctx context.Context) (string, error)
 }
 
 type Server struct {
