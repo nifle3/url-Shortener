@@ -21,9 +21,10 @@ type Server struct {
 	Port string `yaml:"port"`
 }
 
-func loadConfig(cfgPath string) Config {
+func loadConfig() {
 	var result Config
 
+	cfgPath := os.Getenv("CFG_PATH")
 	file, err := os.ReadFile(cfgPath)
 	if err != nil {
 		log.Fatal(err.Error())
@@ -31,5 +32,5 @@ func loadConfig(cfgPath string) Config {
 
 	err = yaml.Unmarshal(file, &result)
 
-	return result
+	instance = &result
 }

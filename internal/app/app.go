@@ -2,8 +2,6 @@ package app
 
 import (
 	"fmt"
-	"log"
-	"os"
 	"urlShortener/internal/cfg"
 	"urlShortener/internal/service"
 	inmemory "urlShortener/internal/storage/inMemory"
@@ -16,11 +14,7 @@ const (
 )
 
 func Run() {
-	cfgPath := os.Getenv(cfgPath)
-	if cfgPath == "" {
-		log.Fatal("cfgPath is not set")
-	}
-	cfg := cfg.MustLoad(cfgPath)
+	cfg := cfg.GetInstance()
 
 	log := logger.MustCreate(cfg.Build)
 	log.Info(fmt.Sprintf("app is starting with cfg: %#v", cfg))
