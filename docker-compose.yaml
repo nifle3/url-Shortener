@@ -12,6 +12,10 @@ services:
       context: .
       dockerfile: Dockerfile
 
+    environment:
+      CFG_PATH: /app/config/cfg.yaml
+
+
   cache:
     ports:
       - '6379:6379'

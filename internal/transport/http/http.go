@@ -15,8 +15,8 @@ type Server struct {
 	service service
 }
 
-func New(service service) Server {
-	return Server{
+func New(service service) *Server {
+	return &Server{
 		service: service,
 	}
 }

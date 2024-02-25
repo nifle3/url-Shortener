@@ -5,5 +5,5 @@ ADD . .
 
 RUN go mod download
 
-RUN go build cmd/main.go
-CMD ["main"]
+RUN go build -o main cmd/main.go
+CMD ["./main"]

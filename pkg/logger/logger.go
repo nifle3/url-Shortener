@@ -42,5 +42,10 @@ func create() {
 			Level:     slog.LevelInfo,
 			AddSource: false,
 		}))
+	default:
+		instance = slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+			Level:     slog.LevelInfo,
+			AddSource: true,
+		}))
 	}
 }

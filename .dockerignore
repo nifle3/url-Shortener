@@ -3,3 +3,6 @@ docker-compose.yaml
 .github
 .gitignore
 .git
+Dockerfile
+.dockerignore
+.env
