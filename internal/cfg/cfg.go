@@ -8,14 +8,9 @@ import (
 )
 
 type Config struct {
-	Build   string `yaml:"build"`
-	Storage `yaml:"storage"`
-	Server  `yaml:"server"`
-	Cache   `yaml:"cache"`
-}
-
-type Storage struct {
-	ConnString string `yaml:"connection_string"`
+	Build  string `yaml:"build"`
+	Server `yaml:"server"`
+	Cache  `yaml:"cache"`
 }
 
 type Server struct {

@@ -2,8 +2,8 @@ package http
 
 import (
 	"context"
-
-	"github.com/gin-gonic/gin"
+	"fmt"
+	"net/http"
 )
 
 type service interface {
@@ -22,10 +22,10 @@ func New(service service) *Server {
 }
 
 func (s *Server) Listen(adr string) error {
-	r := gin.Default()
+	r := http.NewServeMux()
 
-	r.GET("/v1/get/:url", s.Get)
-	r.GET("/v1/add/:url", s.Add)
+	r.HandleFunc(fmt.Sprintf("%s /v1/add", http.MethodPost), s.Add)
+	r.HandleFunc(fmt.Sprintf("%s /v1/get/{url}", http.MethodGet), s.Get)
 
-	return r.Run(adr)
+	return http.ListenAndServe(adr, r)
 }
